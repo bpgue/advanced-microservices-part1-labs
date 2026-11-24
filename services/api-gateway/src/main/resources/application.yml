@@ -26,6 +26,12 @@ spring:
               uri: ${NOTIFICATIONS_URL:http://localhost:8085}
               predicates:
                 - Path=/api/notifications/**
+            - id: stock-alias
+              uri: ${INVENTORY_URL:http://localhost:8081}
+              predicates:
+                - Path=/stock/{sku}
+              filters:
+                - SetPath=/api/inventory/{sku}
 server:
   port: ${SERVER_PORT:8080}
 management:
